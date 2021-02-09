@@ -8,7 +8,12 @@ var cors=require('cors');
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var catRouter=require('./routes/catRouter');
-
+var deliveryRouter=require('./routes/deliveryRouter');
+var empRouter=require('./routes/empRouter');
+var orderdetailRouter=require('./routes/orderDetailRouter');
+var orderRouter=require('./routes/orderRouter');
+var productRouter=require('./routes/productRouter');
+var userRouter=require('./routes/userRouter');
 var app = express();
 
 // view engine setup
@@ -24,6 +29,12 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/cat',catRouter);
+app.use('/delivery',deliveryRouter);
+app.use('/emp',empRouter);
+app.use('/orderdetail',orderdetailRouter);
+app.use('/order',orderRouter);
+app.use('/product',productRouter);
+app.use('/_user',userRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
