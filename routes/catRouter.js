@@ -55,6 +55,7 @@ router.get('/:id',function(req,res,next){
     });
   });
   router.put('/',function(req,res,next){
+      //consol.log(req.body);
     cat.editCat(req.body,function(err,rows){
       if(err){
           res.json(err);

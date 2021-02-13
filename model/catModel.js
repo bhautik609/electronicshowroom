@@ -16,7 +16,7 @@ var cat={
 
     },
     editCat:function(data,callback){
-        return db.query('update cat_tbl set cat_name=?, where cat_id=?',[data.cat_name,data.cat_id],callback); 
+        return db.query('update cat_tbl set cat_name=?  where cat_id=?',[data.cat_name,data.cat_id],callback); 
     }
 };
 module.exports=cat;

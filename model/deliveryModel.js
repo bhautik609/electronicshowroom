@@ -12,11 +12,11 @@ var delivery={
     },
     getdeliverybyId:function(id,callback){
         //console.log(id);
-        return db.query('select * from delivary_tbl where del_id=?',[id],callback);
+        return db.query('select * from delivery_tbl where del_id=?',[id],callback);
 
     },
     editdelivary:function(data,callback){
-        return db.query('update delivary_tbl set order_id_fk=?,emp_id_fk=?,del_date=?,del_status=? where del_id=?',[data.order_id_fk,data.emp_id_fk,data.del_date,data.del_status,data.del_id],callback); 
+        return db.query('update delivery_tbl set order_id_fk=?,emp_id_fk=?,del_date=?,del_status=? where del_id=?',[data.order_id_fk,data.emp_id_fk,data.del_date,data.del_status,data.del_id],callback); 
     }
 
 
