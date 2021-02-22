@@ -2,7 +2,7 @@ var express=require('express');
 var router=express.Router();
 var cat=require('../model/catModel');
 router.get('/',function(req,res,next){
-
+console.log(req.body);
     cat.getAllCat(function(err,rows){
         if(err){
             res.json(err);

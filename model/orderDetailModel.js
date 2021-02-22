@@ -1,7 +1,7 @@
 var db=require('../dbconnection');
 var orderdetail={
     getAllorderdetail:function(callback){
-        return db.query(' select *  from  order_detail',callback);
+        return db.query(' select  o.*,p.*  from  order_detail o,product_tbl p where p.product_id=o.product_id_fk',callback);
     },
     addorderdetail:function(data,callback){
 
