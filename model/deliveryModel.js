@@ -1,7 +1,7 @@
 var db=require('../dbconnection');
 var delivery={
     getAlldelivery:function(callback){
-        return db.query('select d.*,e.*,o.* from delivery_tbl d,emp_tbl e,order_tbl o where e.emp_id=d.emp_id_fk,o.order_id=d.order_id_fk',callback);
+        return db.query('select d.*,e.*,o.* from delivery_tbl d,emp_tbl e,order_tbl o where e.emp_id=d.emp_id_fk and o.order_id=d.order_id_fk',callback);
     },
     adddelivery:function(data,callback){
 
