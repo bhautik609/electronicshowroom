@@ -1,7 +1,7 @@
 var db=require('../dbconnection');
 var order={
     getAllorder:function(callback){
-        return db.query(' select  o.*,u.* from  order_tbl o,user_tbl u where u.user_id=o.user_id_fk',callback);
+        return db.query(' select  o.*,u.*,p.* from  order_tbl o,user_tbl u,product_tbl p where u.user_id=o.user_id_fk and p.product_id=o.product_id_fk',callback);
     },
     addorder:function(data,callback){
 
