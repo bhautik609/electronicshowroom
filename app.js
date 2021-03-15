@@ -14,6 +14,7 @@ var orderdetailRouter=require('./routes/orderDetailRouter');
 var orderRouter=require('./routes/orderRouter');
 var productRouter=require('./routes/productRouter');
 var userRouter=require('./routes/userRouter');
+var loginRouter=require('./routes/loginRouter');
 var app = express();
 
 // view engine setup
@@ -37,6 +38,7 @@ app.use('/orderdetail',orderdetailRouter);
 app.use('/order',orderRouter);
 app.use('/product',productRouter);
 app.use('/_user',userRouter);
+app.use('/login',loginRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
