@@ -5,9 +5,9 @@ var user={
     },
     adduser:function(data,callback){
 
-        return db.query('insert into user_tbl values(?,?,?,?,?,?,?,?)',[null,data.user_password,data.user_name,data.user_email,data.user_age,data.user_gender,data.user_mob,data.user_address],callback);
+        return db.query('insert into user_tbl values(?,?,?,?,?,?,?,?,?)',[null,data.user_password,data.user_name,data.user_email,data.user_age,data.user_gender,data.user_mob,data.user_address,data.user_type],callback);
     },
-    deluser:function(id,callback){
+    deluser:function(id,callback){  
         return db.query('delete from user_tbl where user_id=?',[id],callback);
     },
     getuserbyId:function(id,callback){
