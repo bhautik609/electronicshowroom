@@ -25,21 +25,36 @@ router.get('/',function(req,res,next){
         }
     });
 });
-router.post('/',upload.single('product_img1','product_img2'),function(req,res,next){
-    console.log(req.file);
-    product.addproduct(req.body,req.file.filename,function(err,rows){
-          if(err)
-          {
-              res.json(err);
+ router.post('/',upload.array('photos',12),function(req,res,next){
+     console.log(req.file);
+     product.addproduct(req.body,req.file.filename,function(err,rows){
+           if(err)
+           {
+               res.json(err);
   
-          }
-          else
-          {
-              res.json(rows)
-          }
+           }
+           else
+           {
+               res.json(rows);
+           }
   
-      });
+       });
   });
+//  router.post('/',upload.single('product_img1'),function(req,res,next){
+//      console.log(req.file);
+//      product.addproduct(req.body,req.file.filename,function(err,rows){
+//            if(err)
+//            {
+//                res.json(err);
+  
+//            }
+//            else
+//            {
+//                res.json(rows)
+//            }
+  
+//        });
+//  });
   router.delete('/:id',function(req,res,next){
     product.delproduct(req.params.id,function(err,rows){
         if(err){
