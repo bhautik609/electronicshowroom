@@ -5,7 +5,7 @@ var product={
     },
     addproduct:function(data,filename,callback){
         console.log(data);
-        return db.query('insert into product_tbl values(?,?,?,?,?,?,?,?,?,?,?,?)',[null,data.product_name,data.product_color,data.product_mfd,data.product_price,data.product_warr,data.product_garr,data.product_desc,filename,filename,data.product_img3,data.cat_id_fk],callback);
+        return db.query('insert into product_tbl values(?,?,?,?,?,?,?,?,?,?)',[null,data.product_name,data.product_color,data.product_mfd,data.product_price,data.product_warr,data.product_garr,data.product_desc,filename,data.cat_id_fk],callback);
     },
     delproduct:function(id,callback){
         return db.query('delete from product_tbl where product_id=?',[id],callback);  
