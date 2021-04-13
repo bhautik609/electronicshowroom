@@ -50,9 +50,9 @@ router.post('/',upload.single('product_img1'),function(req,res,next){
         }
     });
   });
-  router.get('/:id',function(req,res,next){
+  router.get('/:product_id',function(req,res,next){
       console.log(req.body)
-      product.getproductbyId(req.params.id,function(err,rows){
+      product.getproductbyId(req.params.product_id,function(err,rows){
           if(err){
               res.json(err);
     
@@ -64,25 +64,51 @@ router.post('/',upload.single('product_img1'),function(req,res,next){
     
       });
     });
-    router.put('/',function(req,res,next){
-      product.editproduct(req.body,function(err,rows){
-        if(err){
+//     router.put('/',function(req,res,next){
+//       product.editproduct(req.body,function(err,rows){
+//         if(err){
+//             res.json(err);
+//         }
+//         else
+//         {
+//             res.json(rows);
+//         }
+//       });
+//    });
+// router.put('/',upload.single('product_img1'),function(req,res,next){
+//     console.log(req.file);
+//     product.editproduct(req.body,req.file.fieldname,function(err,rows){
+//       if(err){
+//           res.json(err);
+//       }
+//       else
+//       {
+//           res.json(rows);
+//       }
+//     });
+//  });
+router.put('/:product_id',upload.single('product_img1'), function (req, res, next) {
+    console.log(req.file);
+    product.editproduct(req.params.product_id,req.body,req.file!= null ? req.file.filename : req.body.product_img1,function (err, rows) {
+        if (err) {
+            console.log('error');
             res.json(err);
         }
-        else
-        {
-            res.json(rows);
-        }
-      });
-   });
-   router.get('/',function(req,res,next){
-    product.getproductbyId(req.body,function(err,rows){
-        if(err){
-            res.json(err);
-        }
-        else{
+        else {
+            console.log('rows');
             res.json(rows);
         }
     });
 });
+//    router.get('/',function(req,res,next){
+//        console.log(req.body);
+//     product.getproductbyId(req.body,function(err,rows){
+//         if(err){
+//             res.json(err);
+//         }
+//         else{
+//             res.json(rows);
+//         }
+//     });
+// });
 module.exports=router;
