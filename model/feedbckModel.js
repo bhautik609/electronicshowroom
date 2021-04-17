@@ -11,7 +11,8 @@ var feedback={
 
     //},
     AddFeedback:function(item,callback){
-        return db.query('insert into feedback_tbl values(?,?,?,?)'[null,item.user_email_fk,item.feed_msg,item.feed_date],callback);
+        console.log(item);
+        return db.query('insert into feedback_tbl values(?,?,?,?)',[null,item.fk_u_EmailId,item.feedback_msg,item.feedback_date],callback);
     }
 }
 module.exports=feedback;
