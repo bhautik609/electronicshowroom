@@ -3,6 +3,7 @@ var router=express.Router();
 var user=require('../model/userModel');
 var multer = require('multer');
 var path = require('path');
+const { use } = require('./users');
 var storage = multer.diskStorage({
     destination: (req, file, cb) => {
       cb(null, 'public/images/user')
@@ -105,4 +106,5 @@ router.post('/',upload.single('user_img'),function(req,res,next){
         }
     });
 });
+
 module.exports=router;

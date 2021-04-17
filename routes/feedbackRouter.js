@@ -24,4 +24,16 @@ router.delete('/:id',function(req,res,next){
         }
     });
   });
+  router.post('/', function (req, res, next) {
+    feedback.AddFeedback(req.body, function (err, rows) {
+        console.log(req.body);
+        if (err) {
+            res.json(err);
+        }
+        if (rows) {
+            res.json(rows);
+        }
+    });
+});
+
 module.exports=router;

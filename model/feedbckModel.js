@@ -6,5 +6,12 @@ var feedback={
     delfeedback:function(id,callback){
         return db.query('delete from feedback_tbl where feed_id=?',[id],callback);
     },
+    //AddFeedback: function (item, callback) {
+       // return db.query("insert into feedback_table (fk_u_EmailId,feedback_msg,feedback_date) values (?,?,?)", [item.fk_u_EmailId, item.feedback_msg,item.feedback_date], callback);
+
+    //},
+    AddFeedback:function(item,callback){
+        return db.query('insert into feedback_tbl values(?,?,?,?)'[null,item.user_email_fk,item.feed_msg,item.feed_date],callback);
+    }
 }
 module.exports=feedback;

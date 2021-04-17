@@ -16,6 +16,9 @@ var productRouter=require('./routes/productRouter');
 var userRouter=require('./routes/userRouter');
 var loginRouter=require('./routes/loginRouter');
 var feedback=require('./routes/feedbackRouter');
+var shipping=require('./routes/shippindRouter');
+var email=require('./routes/emailRouter');
+var admin=require('./routes/adminRouter');
 var app = express();
 
 // view engine setup
@@ -41,7 +44,9 @@ app.use('/product',productRouter);
 app.use('/_user',userRouter);
 app.use('/login',loginRouter);
 app.use('/feedback',feedback);
-
+app.use('/shipping',shipping);
+app.use('/email',email);
+app.use('/admin',admin);
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   next(createError(404));
