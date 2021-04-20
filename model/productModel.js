@@ -31,8 +31,14 @@ var product={
     //}
     //getProductById: function (pro_id, callback) {
         //return db.query('select c5.*,p5.* from category_table c5,product_table p5 where c5.cat_id=p5.fk_cat_id and p5.pro_id=?', [pro_id], callback);
-    //}, 
-
+    //},
+    searchProduct: function (pro_name, callback) {
+        // console.log(item.searchtext);
+        db.query('select * from product_tbl where product_name like ?', ['%' + pro_name + '%'], callback);
+    }, 
+    getProductBycategory: function (fk_cat_id, callback) {
+        return db.query('select c5.*,p5.* from cat_tbl c5,product_tbl p5 where c5.cat_id=p5.cat_id_fk and p5.cat_id_fk=?', [fk_cat_id], callback);
+    },
 
 
 };

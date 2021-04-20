@@ -16,7 +16,22 @@ var orderdetail={
     },
     editorderdetail:function(data,callback){
         return db.query('update order_detail set order_id_fk=?,product_id_fk=?,order_qty=? where order_detail_id=?',[data.order_id_fk,data.product_id_fk,data.order_qty,data.order_detail_id],callback); 
-    }
+    },
+    insertOrderDetail: function (item, callback) {
+        const arr1 = [];
+        console.log('inside model delivery detAILS');
+        console.log(item);
+        for (let j = 0; j < item.cartItems.length; j++) {
+            //var od = null;
+            var order_id_fk = item.order_id_fk;
+            var product_id_fk = item.cartItems[j]. Product.product_id;
+            var order_qty = item.cartItems[j].Quantuty;
+            arr1.push([order_id_fk, product_id_fk, order_qty]);
+        }
+        console.log(arr1);
+        return db.query("insert into `order_detail` (`order_id_fk`,`product_id_fk`,`order_qty`) values ?", [arr1], callback);
+        //return db.query('insert into order_detail values(?,?,?)', [arr1], callback);
+    },
 
 };
 module.exports=orderdetail;

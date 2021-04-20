@@ -5,7 +5,7 @@ var order={
     },
     addorder:function(data,callback){
 
-        return db.query('insert into order_tbl values(?,?,?,?,?,?,?)',[null,data.order_date,data.order_amount,data.product_id_fk,data.user_id_fk,data.payment_type,data.payment_status],callback);
+        return db.query('insert into order_tbl values(?,?,?,?,?,?)',[null,data.order_date,data.order_amount,data.user_id_fk,data.payment_type,data.payment_status],callback);
     },
     delorder:function(id,callback){
         return db.query('delete from order_tbl where order_id=?',[id],callback);
@@ -16,7 +16,10 @@ var order={
     },
     editorder:function(data,callback){
         return db.query('update order_tbl set order_date=?,order_amount=?,product_id_fk=?,user_id_fk=?,payment_type=?,payment_status=? where order_id=?',[data.order_date,data.order_amount,data.product_id_fk,data.user_id_fk,data.payment_type,data.payment_status,data.order_id],callback); 
-    }
+    },
+    getMyOrdersById: function (user_id_fk, callback) {
+        return db.query('SELECT * from order_tbl WHERE user_id_fk=?', [user_id_fk], callback);
+    },
 
 
 

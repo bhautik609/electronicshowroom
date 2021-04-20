@@ -19,6 +19,10 @@ var feedback=require('./routes/feedbackRouter');
 var shipping=require('./routes/shippindRouter');
 var email=require('./routes/emailRouter');
 var admin=require('./routes/adminRouter');
+var serch=require('./routes/serchtextboxRouter');
+var productbycatid=require('./routes/getproductbycatRouter');
+var inserorderdetail=require('./routes/insertorderdetailRouter');
+var myorder=require('./routes/myorderRouter');
 var app = express();
 
 // view engine setup
@@ -47,6 +51,10 @@ app.use('/feedback',feedback);
 app.use('/shipping',shipping);
 app.use('/email',email);
 app.use('/admin',admin);
+app.use('/serch',serch);
+app.use('/catid',productbycatid);
+app.use('/insertorder',inserorderdetail);
+app.use('/myorder',myorder);
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   next(createError(404));

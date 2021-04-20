@@ -17,6 +17,9 @@ var delivery={
     },
     editdelivary:function(data,callback){
         return db.query('update delivery_tbl set order_id_fk=?,emp_id_fk=?,del_date=?,del_status=? where del_id=?',[data.order_id_fk,data.emp_id_fk,data.del_date,data.del_status,data.del_id],callback); 
+    },
+    getOrderStatus: function (fk_detail_id, callback) {
+        return db.query('select * from delivery_tbl WHERE fk_detail_id=?', [fk_detail_id], callback);
     }
 
 
