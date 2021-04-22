@@ -1,7 +1,7 @@
 var db=require('../dbconnection');
 var order={
     getAllorder:function(callback){
-        return db.query(' select  o.*,u.*,p.* from  order_tbl o,user_tbl u,product_tbl p where u.user_id=o.user_id_fk and p.product_id=o.product_id_fk',callback);
+        return db.query(' select  o.*,u.* from  order_tbl o,user_tbl u where u.user_id=o.user_id_fk',callback);
     },
     addorder:function(data,callback){
 
@@ -19,6 +19,9 @@ var order={
     },
     getMyOrdersById: function (user_id_fk, callback) {
         return db.query('SELECT * from order_tbl WHERE user_id_fk=?', [user_id_fk], callback);
+    },
+    getOrderDetailsByOrderIdNotAssign: function (order_id, callback) {
+        return db.query('select p.product_name,p.product_img1,p.product_price,o.*,od.* from product_tbl p,order_tbl o,order_detail od where o.order_id=od.order_id_fk  and p.product_id=od.product_id_fk and o.order_id=?', [order_id], callback);
     },
 
 

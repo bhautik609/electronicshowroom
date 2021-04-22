@@ -23,6 +23,8 @@ var serch=require('./routes/serchtextboxRouter');
 var productbycatid=require('./routes/getproductbycatRouter');
 var inserorderdetail=require('./routes/insertorderdetailRouter');
 var myorder=require('./routes/myorderRouter');
+var userOrderCheck_router=require('./routes/checkuserorderAssignRouter');
+var ordernotassign=require('./routes/ordernotassignRouter');
 var app = express();
 
 // view engine setup
@@ -55,6 +57,8 @@ app.use('/serch',serch);
 app.use('/catid',productbycatid);
 app.use('/insertorder',inserorderdetail);
 app.use('/myorder',myorder);
+app.use('/UserOrderCheck',userOrderCheck_router);
+app.use('/ordernotassign',ordernotassign);
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   next(createError(404));

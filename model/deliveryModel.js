@@ -20,7 +20,10 @@ var delivery={
     },
     getOrderStatus: function (fk_detail_id, callback) {
         return db.query('select * from delivery_tbl WHERE fk_detail_id=?', [fk_detail_id], callback);
-    }
+    },
+    getOrderAssigned: function (order_id, callback) {
+        return db.query('SELECT * FROM delivery_tbl WHERE order_id_fk=?', [order_id], callback);
+    },
 
 
 
