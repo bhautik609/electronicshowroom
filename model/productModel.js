@@ -39,6 +39,9 @@ var product={
     getProductBycategory: function (fk_cat_id, callback) {
         return db.query('select c5.*,p5.* from cat_tbl c5,product_tbl p5 where c5.cat_id=p5.cat_id_fk and p5.cat_id_fk=?', [fk_cat_id], callback);
     },
+    deleteAll: function (item, callback) {
+        return db.query("delete from product_tbl where product_id in (?)", [item], callback);
+    }
 
 
 };

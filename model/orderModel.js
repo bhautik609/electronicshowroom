@@ -23,6 +23,9 @@ var order={
     getOrderDetailsByOrderIdNotAssign: function (order_id, callback) {
         return db.query('select p.product_name,p.product_img1,p.product_price,o.*,od.* from product_tbl p,order_tbl o,order_detail od where o.order_id=od.order_id_fk  and p.product_id=od.product_id_fk and o.order_id=?', [order_id], callback);
     },
+    getMultiplebyOrderId: function (order_id, callback) {
+        return db.query('select d.*,t .*,p.product_name,p.product_img1,o.*,od.*,d.user_id_fk as DelID from track_tbl t,product_tbl p,delivery_tbl d,order_tbl o,order_detail od where o.order_id=od.order_id_fk and o.order_id=d.order_id_fk and p.product_id=od.product_id_fk and d.delivery_id=t.delivery_id_fk and o.order_id=?', [order_id], callback);
+    }
 
 
 

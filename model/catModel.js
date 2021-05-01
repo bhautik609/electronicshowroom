@@ -7,6 +7,10 @@ var cat={
 
         return db.query('insert into cat_tbl values(?,?)',[null,data.cat_name],callback);
     },
+    deleteAll: function (item, callback) {
+        console.log(item);
+        return db.query("delete from cat_tbl where cat_id in (?)", [item], callback);
+    },
     delcat:function(id,callback){
         return db.query('delete from cat_tbl where cat_id=?',[id],callback);
     },

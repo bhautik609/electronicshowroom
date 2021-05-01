@@ -33,6 +33,9 @@ var user={
     getuserByEmail: function (u_EmailId, callback) {
         return db.query("select * from user_tbl where user_email=?", [u_EmailId], callback);
     },
+    deleteAll: function (item, callback) {
+        return db.query("delete from user_tbl where user_id in (?)", [item], callback);
+    }
 
 
 };

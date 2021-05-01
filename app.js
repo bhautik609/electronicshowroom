@@ -25,6 +25,9 @@ var inserorderdetail=require('./routes/insertorderdetailRouter');
 var myorder=require('./routes/myorderRouter');
 var userOrderCheck_router=require('./routes/checkuserorderAssignRouter');
 var ordernotassign=require('./routes/ordernotassignRouter');
+var catdelete=require('./routes/catdeleteRouter');
+var productdel=require('./routes/productdeleteAllRouter');
+var userdel=require('./routes/userdeleteRouter');
 var app = express();
 
 // view engine setup
@@ -59,6 +62,9 @@ app.use('/insertorder',inserorderdetail);
 app.use('/myorder',myorder);
 app.use('/UserOrderCheck',userOrderCheck_router);
 app.use('/ordernotassign',ordernotassign);
+app.use('/catdelete',catdelete);
+app.use('/productdel',productdel);
+app.use('/userdel',userdel);
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   next(createError(404));
