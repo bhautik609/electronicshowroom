@@ -28,6 +28,17 @@ var ordernotassign=require('./routes/ordernotassignRouter');
 var catdelete=require('./routes/catdeleteRouter');
 var productdel=require('./routes/productdeleteAllRouter');
 var userdel=require('./routes/userdeleteRouter');
+var usertype=require('./routes/usertypeRouter');
+var track=require('./routes/trcakRouter');
+var orderass=require('./routes/getorderassignRouter');
+var getordernot=require('./routes/getorderNotassignRouter');
+var getallboy=require('./routes/getalldeliveryboy');
+var addorderassign=require('./routes/addorderassignRouter');
+var diliverydelall=require('./routes/deliverydelAllRouter');
+var empdelall=require('./routes/deleteallEmpRouter');
+var feedbackdel=require('./routes/feedbackdellAll.Router');
+var orderdel=require('./routes/orderdelRouter');
+var usercheck=require('./routes/usercheckstatuscheckRouter');
 var app = express();
 
 // view engine setup
@@ -65,6 +76,17 @@ app.use('/ordernotassign',ordernotassign);
 app.use('/catdelete',catdelete);
 app.use('/productdel',productdel);
 app.use('/userdel',userdel);
+app.use('/usertype',usertype);
+app.use('/track',track);
+app.use('/orderassign',orderass);
+app.use('/orderNotAssigned',getordernot);
+app.use('/getallboy',getallboy);
+app.use('/AddAssignedOrder',addorderassign);
+app.use('/deliverydel',diliverydelall);
+app.use('/empdel',empdelall);
+app.use('/feedbackdel',feedbackdel);
+app.use('/orderdel',orderdel);
+app.use('/UserOrderCheck',usercheck);
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   next(createError(404));

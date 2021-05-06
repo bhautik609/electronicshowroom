@@ -13,6 +13,9 @@ var feedback={
     AddFeedback:function(item,callback){
         console.log(item);
         return db.query('insert into feedback_tbl values(?,?,?,?)',[null,item.fk_u_EmailId,item.feedback_msg,item.feedback_date],callback);
+    },
+    deleteAll: function (item, callback) {
+        return db.query("delete from feedback_tbl where feed_id in (?)", [item], callback);
     }
 }
 module.exports=feedback;

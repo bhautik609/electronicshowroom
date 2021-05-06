@@ -1,5 +1,8 @@
 var db=require('../dbconnection');
 var emp={
+    deleteAll: function (item, callback) {
+        return db.query("delete from emp_tbl where emp_id in (?)", [item], callback);
+    },
     getAllemp:function(callback){
         return db.query(' select *  from  emp_tbl',callback);
     },

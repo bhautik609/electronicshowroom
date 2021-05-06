@@ -35,7 +35,10 @@ var user={
     },
     deleteAll: function (item, callback) {
         return db.query("delete from user_tbl where user_id in (?)", [item], callback);
-    }
+    },
+    getAllUsersAccordingtoType: function (Type, callback) {
+        return db.query("Select * from user_tbl WHERE user_type=?", [Type], callback)
+    },
 
 
 };

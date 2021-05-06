@@ -25,7 +25,19 @@ var order={
     },
     getMultiplebyOrderId: function (order_id, callback) {
         return db.query('select d.*,t .*,p.product_name,p.product_img1,o.*,od.*,d.user_id_fk as DelID from track_tbl t,product_tbl p,delivery_tbl d,order_tbl o,order_detail od where o.order_id=od.order_id_fk and o.order_id=d.order_id_fk and p.product_id=od.product_id_fk and d.delivery_id=t.delivery_id_fk and o.order_id=?', [order_id], callback);
-    }
+    },
+    getOrderAssigned: function (callback) {
+        return db.query('SELECT a.user_name as DeliveryBoy_Name,o.*,d.del_id,d.user_id_fk as DeliveryBoyId,d.order_id_fk,d.del_date from user_tbl a,delivery_tbl d,order_tbl o where a.user_type="employee" and o.order_id=d.order_id_fk and a.user_id=d.user_id_fk', callback)
+    },
+    getOrdernotAssigned: function (callback) {
+        // return db.query('SELECT o.* FROM order_bill_table o WHERE o.order_id NOT IN ( SELECT d.fk_order_id FROM deliver_detalis_table d )', callback);
+        return db.query('SELECT a.user_type,o.* FROM order_tbl o ,user_tbl a WHERE o.order_id NOT IN ( SELECT d.order_id_fk FROM delivery_tbl d ) and a.user_type="1" and a.user_id=o.user_id_fk', callback);
+    },
+    deleteAll: function (item, callback) {
+        //console.log(item);
+        return db.query("delete from order_tbl where order_id in (?)", [item], callback);
+    },
+    
 
 
 
