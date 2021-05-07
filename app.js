@@ -39,6 +39,11 @@ var empdelall=require('./routes/deleteallEmpRouter');
 var feedbackdel=require('./routes/feedbackdellAll.Router');
 var orderdel=require('./routes/orderdelRouter');
 var usercheck=require('./routes/usercheckstatuscheckRouter');
+var delivery=require('./routes/deliveryboyLoginRouter');
+var deliverydash=require('./routes/deliveryDashbordRouter');
+var todaycash=require('./routes/todaycashRouter');
+var deliveryinfo=require('./routes/deliveryinfoRouter');
+var updatedeliverydate=require('./routes/updatedeliverydateRouter');
 var app = express();
 
 // view engine setup
@@ -87,6 +92,11 @@ app.use('/empdel',empdelall);
 app.use('/feedbackdel',feedbackdel);
 app.use('/orderdel',orderdel);
 app.use('/UserOrderCheck',usercheck);
+app.use('/deliveyBoylogin',delivery);
+app.use('/deliverdashboard',deliverydash);
+app.use('/TodaysCash',todaycash);
+app.use('/deliver_info',deliveryinfo);
+app.use('/updateDeliveyDate',updatedeliverydate);
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   next(createError(404));

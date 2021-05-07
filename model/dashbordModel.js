@@ -1,7 +1,7 @@
 var db = require('../dbconnection');
-var dateFormat = require('dateformat');
+var dateFormat = require('dateformate');
 var now = Date.now();
-const current_date = dateFormat(now, "yyyy-mm-dd");
+//const current_date //= dateFormat(now, "yyyy-mm-dd");
 var dash = {
     getAllCustomer: function (callback) {
 
@@ -37,11 +37,15 @@ var dash = {
     },
     TotalCashOnHand: function (callback) {
         console.log(current_date);
-        return db.query("SELECT SUM(o.order_amt) as 'total' FROM order_bill_table o,tracking_table t,deliver_detalis_table d WHERE o.order_id=d.fk_order_id and d.detail_id=t.fk_detail_id and d.date=? and t.status='Delivered' and o.order_payment='cash'", [current_date], callback);
+        return db.query("SELECT SUM(o.order_amount) as 'total' FROM order_tbl o,track_tbl t,delivery_tbl d WHERE o.order_id=d.order_id_fk and d.del_id=t.delivery_id_fk and d.del_date=? and t.status='Delivered' and o.payment_type='cash'", [current_date], callback);
     },
     DeliveryBoyTodaysCash: function (u_EmailId, callback) {
         // return db.query("SELECT a.u_Name,SUM(o.order_amt) as 'total' FROM order_bill_table o,tracking_table t,deliver_detalis_table d,admin a WHERE o.order_id=d.fk_order_id and d.detail_id=t.fk_detail_id and d.date=? and t.status='Delivered' and a.u_EmailId=?", [current_date, u_EmailId], callback);
-        return db.query("SELECT SUM(o.order_amt) as 'total' FROM order_bill_table o,tracking_table t,deliver_detalis_table d WHERE o.order_id=d.fk_order_id and d.detail_id=t.fk_detail_id and d.date=? and t.status='Delivered' and d.fk_u_EmailId=?", [current_date, u_EmailId], callback)
+        return db.query("SELECT SUM(o.order_amount) as 'total' FROM order_tbl o,track_tbl t,delivery_tbl d WHERE o.order_id=d.order_id_fk and d.del_id=t.delivery_id_fk and d.del_date=? and t.status='Delivered' and d.fk_user_id=?", [current_date, u_EmailId], callback)
+    },
+    onViewMoreInfo: function (order_id, callback) {
+        console.log(order_id);
+        return db.query('select a.user_name,d.del_id,d.user_id_fk as DelID,t.*,p.product_id,p.product_name,p.product_price,o.user_id_fk as UserName,o.order_date,o.order_amount,o.order_id,o.payment_type,od.* from track_tbl t,product_tbl p,delivery_tbl d,order_tbl o,order_detail od,user_tbl a where o.order_id=od.order_id_fk and o.order_id=d.order_id_fk and p.product_id=od.product_id_fk and d.del_id=t.delivery_id_fk and a.user_id=o.user_id_fk and o.order_id=?', [order_id], callback);
     },
 }
 

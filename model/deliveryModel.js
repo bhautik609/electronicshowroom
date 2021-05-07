@@ -53,7 +53,24 @@ var delivery={
      },
      deleteAll: function (item, callback) {
         return db.query("delete from delivery_tbl where del_id in (?)", [item], callback);
-    }
+    },
+    deliveryBoylogin: function (item, callback) {
+        console.log(item);
+        return db.query("select * from user_tbl where user_email=? and user_password=? and user_type='employee' ", [item.u_EmailId, item.u_password], callback);
+    },
+    getAllMemberOrderOfLoginD_Boy: function (fk_u_EmailId, callback) {
+        console.log(fk_u_EmailId);
+        return db.query("SELECT t.track_id,d.del_id,t.status,a.user_address,a.user_name,od.order_id,od.user_id_fk from user_tbl a,order_tbl od,delivery_tbl d,track_tbl t WHERE od.order_id=d.order_id_fk and t.status!='Delivered' and d.del_id=t.delivery_id_fk and a.user_id=od.user_id_fk and d.user_id_fk=? and a.user_type='1'", [fk_u_EmailId], callback);
+    },
+    updateTrack: function (track_id, item, callback) {
+        console.log(item);
+        console.log(track_id);
+        return db.query('update track_tbl set status=? where track_id=?', [item.status, track_id], callback);
+    },
+    upadteDeliveryDate: function (item, callback) {
+        console.log(item);
+        return db.query("UPDATE delivery_tbl SET del_date=? WHERE del_id=?", [item.date, item.detail_id], callback);
+    },
 
 
 };
