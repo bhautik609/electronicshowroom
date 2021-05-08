@@ -71,6 +71,12 @@ var delivery={
         console.log(item);
         return db.query("UPDATE delivery_tbl SET del_date=? WHERE del_id=?", [item.date, item.detail_id], callback);
     },
+    pastDelievredOrder: function (fk_u_EmailId, callback) {
+        // return db.query("SELECT * FROM deliver_detalis_table d, tracking_table t WHERE d.fk_u_EmailId = ? and t.status = 'delivered'  and d.detail_id = t.fk_detail_id", [fk_u_EmailId], callback);
+        // return db.query("SELECT a.u_name,d.*,t.* FROM deliver_detalis_table d, tracking_table t,order_bill_table o,admin a WHERE d.fk_u_EmailId = ? and t.status = 'delivered'  and d.detail_id = t.fk_detail_id and o.order_id=d.fk_order_id and a.u_EmailId=o.fk_u_EmailId", [fk_u_EmailId], callback);
+
+        return db.query("SELECT o.order_amount,a.user_name,d.*,t.* FROM delivery_tbl d, track_tbl t,order_tbl o,user_tbl a WHERE d.user_id_fk = ? and t.status = 'Delivered'  and d.del_id = t.delivery_id_fk and o.order_id=d.order_id_fk and a.user_id=o.user_id_fk", [fk_u_EmailId], callback);
+    }
 
 
 };
