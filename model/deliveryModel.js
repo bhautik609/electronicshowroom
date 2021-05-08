@@ -1,6 +1,9 @@
 var db=require('../dbconnection');
-var dateFormat = require('dateformate');
-var now = new Date();
+//var dateFormat = require('dateformate');
+//var now = new Date();
+var dateFormat = require('dateformat');
+var now = Date.now();
+const current_date = dateFormat(now, "yyyy-mm-dd");
 var delivery={
     getAlldelivery:function(callback){
         return db.query('select d.*,u.*,o.* from delivery_tbl d,user_tbl u,order_tbl o where u.user_id=d.user_id_fk and o.order_id=d.order_id_fk',callback);
@@ -44,7 +47,8 @@ var delivery={
                  console.log(del_Id);
                  //const d = dateFormat(now,"yyyy-mm-dd");
                  
-                 const d="11-05-2021";
+                 //const d="11-05-2021";
+                 const d=current_date;
                  console.log(d);
                  arr1.push([orders, del_Id,d]);
              }

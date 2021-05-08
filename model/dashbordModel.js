@@ -1,7 +1,8 @@
 var db = require('../dbconnection');
-var dateFormat = require('dateformate');
+var dateFormat = require('dateformat');
 var now = Date.now();
-//const current_date //= dateFormat(now, "yyyy-mm-dd");
+const current_date = dateFormat(now, "yyyy-mm-dd");
+
 var dash = {
     getAllCustomer: function (callback) {
 
@@ -41,7 +42,8 @@ var dash = {
     },
     DeliveryBoyTodaysCash: function (u_EmailId, callback) {
         // return db.query("SELECT a.u_Name,SUM(o.order_amt) as 'total' FROM order_bill_table o,tracking_table t,deliver_detalis_table d,admin a WHERE o.order_id=d.fk_order_id and d.detail_id=t.fk_detail_id and d.date=? and t.status='Delivered' and a.u_EmailId=?", [current_date, u_EmailId], callback);
-        return db.query("SELECT SUM(o.order_amount) as 'total' FROM order_tbl o,track_tbl t,delivery_tbl d WHERE o.order_id=d.order_id_fk and d.del_id=t.delivery_id_fk and d.del_date=? and t.status='Delivered' and d.fk_user_id=?", [current_date, u_EmailId], callback)
+        console.log(current_date);
+        return db.query("SELECT SUM(o.order_amount) as 'total' FROM order_tbl o,track_tbl t,delivery_tbl d WHERE o.order_id=d.order_id_fk and d.del_id=t.delivery_id_fk and d.del_date=? and t.status='Delivered' and d.user_id_fk=?", [current_date, u_EmailId], callback)
     },
     onViewMoreInfo: function (order_id, callback) {
         console.log(order_id);
