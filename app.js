@@ -44,6 +44,12 @@ var deliverydash=require('./routes/deliveryDashbordRouter');
 var todaycash=require('./routes/todaycashRouter');
 var deliveryinfo=require('./routes/deliveryinfoRouter');
 var updatedeliverydate=require('./routes/updatedeliverydateRouter');
+var getuserorderdetail=require('./routes/getcheckorderdetailRouter');
+var myordernotassign=require('./routes/ordernotassignRouter');
+var cancletarck=require('./routes/cancleTrackRouter');
+var cancledelivery=require('./routes/cancledeliverydetailRouter');
+var cancleorderdetail=require('./routes/cancleorderdetailRouter');
+var cancleorder=require('./routes/cancleorderRouter');
 var app = express();
 
 // view engine setup
@@ -97,6 +103,12 @@ app.use('/deliverdashboard',deliverydash);
 app.use('/TodaysCash',todaycash);
 app.use('/deliver_info',deliveryinfo);
 app.use('/updateDeliveyDate',updatedeliverydate);
+app.use('/DetailsOrderCheck',getuserorderdetail);
+app.use('/MyOrderNotAssign',myordernotassign);
+app.use('/cancletrack',cancletarck);
+app.use('/cancledelivery',cancledelivery);
+app.use('/cancleorderdetail',cancleorderdetail);
+app.use('/cancleorder',cancleorder);
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   next(createError(404));

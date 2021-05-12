@@ -22,6 +22,9 @@ var trak={
         //console.log(item);
         return db.query("delete from track_tbl where track_id in (?)", [item], callback);
     },
+    CancelTrack: function (fk_detail_id, callback) {
+        return db.query('delete from track_tbl where delivery_id_fk=? ', [fk_detail_id], callback);
+    },
     
 };
 

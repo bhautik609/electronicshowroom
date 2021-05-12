@@ -32,6 +32,9 @@ var orderdetail={
         return db.query("insert into `order_detail` (`order_id_fk`,`product_id_fk`,`order_qty`) values ?", [arr1], callback);
         //return db.query('insert into order_detail values(?,?,?)', [arr1], callback);
     },
+    CancelOrderDetails: function (fk_order_id, callback) {
+        return db.query('delete from order_detail where order_id_fk=?', [fk_order_id], callback);
+    },
 
 };
 module.exports=orderdetail;
