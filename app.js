@@ -50,6 +50,13 @@ var cancletarck=require('./routes/cancleTrackRouter');
 var cancledelivery=require('./routes/cancledeliverydetailRouter');
 var cancleorderdetail=require('./routes/cancleorderdetailRouter');
 var cancleorder=require('./routes/cancleorderRouter');
+var totalcustomer=require('./routes/totalCustomerCountRouter');
+var totalcashonhand=require('./routes/todaycashonhandRouter');
+var totalfeedbackcount=require('./routes/totalfeedbackCountRouter');
+var todayordercount=require('./routes/todayordercountRouter');
+var trckstatus=require('./routes/dashbordtrackinstatusRouter');
+var topselling=require('./routes/topsellingProductRouter');
+var orderthisyear=require('./routes/orderthisyearRouter');
 var app = express();
 
 // view engine setup
@@ -109,6 +116,13 @@ app.use('/cancletrack',cancletarck);
 app.use('/cancledelivery',cancledelivery);
 app.use('/cancleorderdetail',cancleorderdetail);
 app.use('/cancleorder',cancleorder);
+app.use('/TotalCustomer',totalcustomer);
+app.use('/TodaysCashhand',totalcashonhand);
+app.use('/FeedbacksCount',totalfeedbackcount);
+app.use('/TodaysOrders',todayordercount);
+app.use('/DashboardTrackingStatus',trckstatus);
+app.use('/TopSellingProducts',topselling);
+app.use('/orderthisyear',orderthisyear);
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   next(createError(404));

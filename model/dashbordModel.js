@@ -14,27 +14,27 @@ var dash = {
 
     ordersCust: function (item, callback) {
         console.log('update data model');
-        return db.query('SELECT MONTH(bill_date) MONTH, COUNT(*) COUNT FROM order_bill_table WHERE YEAR(bill_date)=? GROUP BY MONTH(bill_date)', [item], callback);
+        return db.query('SELECT MONTH(order_date) MONTH, COUNT(*) COUNT FROM order_tbl WHERE YEAR(order_date)=? GROUP BY MONTH(order_date)', [item], callback);
     },
     trackStatus: function (callback) {
         console.log('update data model');
-        return db.query('SELECT COUNT(IF(status="Delivered",1,null)) as Delivered ,COUNT(IF(status="packing",1,null)) as Packing, COUNT(IF(status="On The Way",1,null))as On_The_Way from tracking_table', callback);
+        return db.query('SELECT COUNT(IF(status="Delivered",1,null)) as Delivered ,COUNT(IF(status="packing",1,null)) as Packing, COUNT(IF(status="On The Way",1,null))as On_The_Way from track_tbl', callback);
     },
     topSellingProducts: function (callback) {
-        return db.query("SELECT p.pro_name,SUM(od.qty) AS 'total',fk_pro_id FROM order_detalis_table od,order_bill_table o,product_table p WHERE od.fk_order_id=o.order_id and p.pro_id=od.fk_pro_id GROUP BY fk_pro_id ORDER BY (total) DESC LIMIT 8", callback);
+        return db.query("SELECT p.product_name,SUM(od.order_qty) AS 'total',product_id_fk FROM order_detail od,order_tbl o,product_tbl p WHERE od.order_id_fk=o.order_id and p.product_id=od.product_id_fk GROUP BY product_id_fk ORDER BY (total) DESC LIMIT 8", callback);
     },
     topSellingProductHomePage: function (callback) {
         return db.query("SELECT p.pro_img,p.pro_price,p.pro_name,SUM(od.qty) AS 'total',fk_pro_id FROM order_detalis_table od,order_bill_table o,product_table p WHERE od.fk_order_id=o.order_id and p.pro_id=od.fk_pro_id GROUP BY fk_pro_id ORDER BY (total) DESC LIMIT 8", callback);
     },
     TotalCustomersCount: function (callback) {
-        return db.query("SELECT COUNT(*) as 'Total_Customers'  FROM admin", callback);
+        return db.query("SELECT COUNT(*) as 'Total_Customers'  FROM user_tbl", callback);
     },
     FeedbacksCounts: function (callback) {
-        return db.query("SELECT COUNT(*) as 'Feedbacks'  FROM feedback_table", callback);
+        return db.query("SELECT COUNT(*) as 'Feedbacks'  FROM  feedback_tbl", callback);
     },
     TodaysOrderCount: function (callback) {
         console.log(current_date);
-        return db.query("SELECT COUNT(*) as 'Today_Orders'  FROM order_bill_table WHERE bill_date=?", [current_date], callback);
+        return db.query("SELECT COUNT(*) as 'Today_Orders'  FROM order_tbl WHERE order_date=?", [current_date], callback);
     },
     TotalCashOnHand: function (callback) {
         console.log(current_date);

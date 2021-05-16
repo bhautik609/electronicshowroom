@@ -16,6 +16,7 @@ var emailsend = {
             to: emailsend.name,
             subject: emailsend.subject
         }, callback);
+        console.log("data");
     }
 
 }

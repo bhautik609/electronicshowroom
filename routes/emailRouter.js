@@ -4,6 +4,7 @@ var emailsend=require("../model/emailModel");
 router.post('/',function(req,res,next){
     console.log("route");
     emailsend.sendMail(req.body,function(err,message){
+        console.log("sent");
         if(err)
         {
             console.log(err);
